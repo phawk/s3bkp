@@ -38,14 +38,14 @@ NOW=$(date  +_%b_%d_%y)
 mysqldump -u ${MYSQL_USER} --password=${MYSQL_PW} --all-databases | bzip2 -c >  all_databases_${DATE_DAY}.sql.bz2
 
 # backup all source files
-tar czvf source_backup_${DATE_DAY}.tar.gz ${HTTPROOT}
+tar czvfP source_backup_${DATE_DAY}.tar.gz ${HTTPROOT}
 
 # move backups into folder
 mv -f all_databases_${DATE_DAY}.sql.bz2 ${BACKUPDIR}
 mv -f source_backup_${DATE_DAY}.tar.gz ${BACKUPDIR}
 
 # combine into one
-tar czvf complete_backup_${NOW}.tar.gz ${BACKUPDIR}
+tar czvfP complete_backup_${NOW}.tar.gz ${BACKUPDIR}
 mv complete_backup_${NOW}.tar.gz ${UPLOADDIR}
 
 # set envvars for s3sync.rb
@@ -59,5 +59,7 @@ cd ${SYNCDIR}
 
 # remove files from uploads after they have been transferred to S3
 cd ${UPLOADDIR}
+rm -rvf *
+cd ${BACKUPDIR}
 rm -rvf *
 cd ${BASE_DIR}
