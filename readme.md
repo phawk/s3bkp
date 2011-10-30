@@ -1,5 +1,5 @@
 ## Dependencies
-This script relys on teh s3sync library for ruby. Asides from that, you will an AWS account with S3 enabled and a server backups bucket setup.
+This script relies on the [s3sync library for ruby](http://s3.amazonaws.com/ServEdge_pub/s3sync/README.txt). Asides from that, you will need an AWS account with S3 enabled and a server backups bucket setup in your S3 account.
 
 ## Installation
 1. Open up server\_backup.sh and edit the configuration information.
