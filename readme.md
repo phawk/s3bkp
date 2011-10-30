@@ -11,5 +11,5 @@ It goes without saying that this process is pretty useless without being able to
 
 ```bash
 crontab -e
-0 3 * * * /home/phawk/s3bkp/server_backup.sh
+0 3 * * * /home/user/s3bkp/server_backup.sh
 ```
