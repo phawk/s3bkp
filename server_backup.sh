@@ -7,7 +7,7 @@
 # Base directory of this script
 BASE_DIR=/home/user/s3bkp/
 
-# Root folder of your web applications
+# Root folder of you want to backup
 HTTPROOT=/var/www
 
 # MySql root / admin user
@@ -15,8 +15,6 @@ MYSQL_USER=root
 MYSQL_PW=rootspassword
 
 # S3 Details
-S3_ACCESS_KEY=11111111111111
-S3_ACCESS_SECRET=secret
 S3BUCKET=bucket-name
 S3PREFIX=bkp
 S3STORE=${S3BUCKET}:${S3PREFIX}
@@ -53,9 +51,8 @@ export AWS_ACCESS_KEY_ID=${S3_ACCESS_KEY}
 export AWS_SECRET_ACCESS_KEY=${S3_ACCESS_SECRET}
 export AWS_CALLING_FORMAT=SUBDOMAIN
 
-# move to the ruby sync directory
-cd ${SYNCDIR}
-./s3sync.rb -r ${UPLOADDIR} ${S3STORE}
+# use s3cmd to sync to s3
+s3cmd put --recursive ${UPLOADDIR} ${S3STORE}
 
 # remove files from uploads after they have been transferred to S3
 cd ${UPLOADDIR}
