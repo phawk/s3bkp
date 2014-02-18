@@ -1,1 +1,0 @@
-All files awaiting upload to S3 servers are placed here.
